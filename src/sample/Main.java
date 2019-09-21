@@ -6,16 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
+/***
  * @author Zachary Maroney
  */
 
 public class Main extends Application {
 
   /**
-   * @param primaryStage
-   * @throws Exception
+   * @author Zachary Maroney
    */
+
   @Override
 
   public void start(Stage primaryStage) throws Exception {

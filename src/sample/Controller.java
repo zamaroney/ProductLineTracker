@@ -11,34 +11,37 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-
+/**
+ * Sets up the different action that many of the gui components do.
+ * @author Zachary Maroney
+ */
 public class Controller {
 
-  @FXML
   /**
    * Button that sends data about a product to the product table.
    */
+  @FXML
   private Button productButton;
 
-  @FXML
   /**
    * Button that sends data about a product to the records.
    */
+  @FXML
   private Button recordButton;
 
   @FXML
   private ComboBox<String> chooseQuality;
 
-  @FXML
   /**
    * action event that sends an example product to the product table.
    */
+  @FXML
   void printProduct(ActionEvent event) {
     final String JDBC_DRIVER = "org.h2.Driver";
     final String DB_URL = "jdbc:h2:./res/PR";
 
     //  Database credentials
-    final String USER = "";    // dont publish database password to github
+    final String USER = "";    //
     final String PASS = "";
     Connection conn = null;
     // initialize connections
@@ -63,24 +66,23 @@ public class Controller {
       conn.close();
     } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();
-      ;
     }
 
 
   }
 
-  @FXML
   /**
    * action event that sends a message to the console.
    */
+  @FXML
   void printRecord(ActionEvent event) {
     System.out.println("Recorded new product!");
   }
 
-  @FXML
   /**
-   * creates the drop down options for the combobox in the produce tab
+   * creates the drop down options for the combobox in the produce .
    */
+  @FXML
   public void initialize() {
     chooseQuality.setItems(observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
     chooseQuality.getSelectionModel().selectFirst();
