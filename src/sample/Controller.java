@@ -1,7 +1,12 @@
+/**
+ * Created by: Zachary Maroney
+ *
+ * This is the implements all the gui components and imports all tje sql/FXML libraries.
+ */
+
 package sample;
 
 import static javafx.collections.FXCollections.observableArrayList;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

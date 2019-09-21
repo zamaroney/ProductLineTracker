@@ -1,4 +1,10 @@
-package sample;
+/**
+ * Created by: Zachary Maroney
+ *
+ * runs the program and creates the window for the gui components.
+ */
+
+    package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
