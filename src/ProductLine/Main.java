@@ -35,7 +35,5 @@ public class Main extends Application {
    * @author Zachary Maroney
    */
 
-  public static void main(String[] args) {
-    launch(args);
-  }
+  public static void main(String[] args) { launch(args); }
 }

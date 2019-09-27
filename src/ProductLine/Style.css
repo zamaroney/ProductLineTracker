@@ -1,16 +1,20 @@
 .button {
   -fx-text-fill: black;
-  -fx-font-family: "Arial Narrow";
+  -fx-font-family: Arial;
   -fx-font-weight: bold;
-  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0.0, 0, .5);
 }
 
 .button:hover {
-  -fx-background-color: linear-gradient(#810541, #310000);
-  -fx-text-fill: white;
-  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+  -fx-background-color: linear-gradient(#b1f0d2, #8dcdb5);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0.0, 0, .5);
 }
 
 .button:focused {
-  -fx-background-color: linear-gradient(#310000, #810541);
+  -fx-background-color: linear-gradient(#9cdec5, #baffdf);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .3), 5, 0.0, 0, .5);
+}
+
+.tab:hover {
+  -fx-background-color: linear-gradient(#9cdec5, #baffdf);
 }

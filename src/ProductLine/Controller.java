@@ -32,11 +32,6 @@ public class Controller {
   // initialize connections
   Statement stmt = null;
 
-
-  public enum ItemType {
-    AU , VI, AM, VM
-  }
-
   /**
    * Button that sends data about a product to the product table.
    */
@@ -98,5 +93,10 @@ public class Controller {
     chooseQuality.setItems(observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
     chooseQuality.getSelectionModel().selectFirst();
     chooseQuality.setEditable(true);
+  }
+
+  @FXML
+  public void itemTypeList() {
+
   }
 }
