@@ -50,6 +50,11 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                   <children>
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                      <children>
+                        <Button fx:id="productButton" layoutX="161.0" layoutY="9.0" mnemonicParsing="false" onAction="#printProduct" prefHeight="23.0" prefWidth="55.0" stylesheets="@Style.css" text="Add" />
+                      </children>
+                    </AnchorPane>
                     <TextField GridPane.columnIndex="1">
                       <GridPane.margin>
                         <Insets bottom="1.0" left="1.0" right="3.0" top="1.0" />
@@ -63,16 +68,12 @@
                       </GridPane.margin>
                     </TextField>
                     <Label id="ItemTlabel" text="Item Type:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                    <ChoiceBox accessibleText="asd" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <ChoiceBox fx:id="chooseType" accessibleText="asd" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                       <GridPane.margin>
                         <Insets left="1.0" />
                       </GridPane.margin>
                     </ChoiceBox>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                      <children>
-                        <Button id="productButton" fx:id="productButton" layoutX="161.0" layoutY="9.0" mnemonicParsing="false" onAction="#printProduct" prefHeight="23.0" prefWidth="55.0" stylesheets="@Style.css" text="Add" />
-                      </children>
-                    </AnchorPane>
+                              <AnchorPane layoutX="230.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" />
                   </children>
                 </GridPane>
                 <Pane layoutX="29.0" layoutY="202.0" prefHeight="245.0" prefWidth="444.0" style="-fx-background-color: lightgrey;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="188.0">
@@ -82,7 +83,7 @@
                         <Font size="18.0" />
                       </font>
                     </Label>
-                    <TableView layoutX="10.0" layoutY="44.0" prefHeight="200.0" prefWidth="420.0">
+                    <TableView id="productTable" fx:id="productTable" layoutX="10.0" layoutY="44.0" prefHeight="200.0" prefWidth="420.0" stylesheets="@Style.css">
                       <columns>
                         <TableColumn prefWidth="140.0" text="Product Name" />
                         <TableColumn minWidth="0.0" prefWidth="140.0" text="Manufacturer" />

@@ -1,18 +1,24 @@
 package ProductLine;
 
 public enum ItemType {
-  AUDIO("AU"),
-  VISUAL("VI"),
-  AUDIO_MOBILE("AM"),
-  VISUAL_MOBILE("VM");
+  AUDIO("Audio", "AU"),
+  VISUAL("Visual", "VI"),
+  AUDIO_MOBILE("Audio Mobile", "AM"),
+  VISUAL_MOBILE("Visual Mobile", "VM");
 
-  private final String value;
+  private final String type;
+  private final String code;
 
-  ItemType(String value) {
-    this.value = value;
+  ItemType(String type, String code) {
+    this.type = type;
+    this.code = code;
   }
+  public String type() {
+    return this.type;
+  }
+
   public String code() {
-    return this.value;
+    return this.code;
   }
 }
 
