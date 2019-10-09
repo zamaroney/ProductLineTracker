@@ -7,10 +7,10 @@ public abstract class Product implements Item {
   private String manufacturer;
   private String name;
 
-  public Product (String name, String manufacturer, ItemType type) {
+  public Product (String name, String manufacturer, String type) {
     this.manufacturer = manufacturer;
     this.name = name;
-    this.type = type.code();
+    this.type = type;
   }
 
   @Override
@@ -48,3 +48,11 @@ public abstract class Product implements Item {
   }
 
 }
+class Widget extends Product {
+
+  public Widget(String name, String manufacturer, String type) {
+    super(name, manufacturer, type);
+  }
+
+}
+

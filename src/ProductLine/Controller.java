@@ -6,15 +6,14 @@
 
 package ProductLine;
 
-import static javafx.collections.FXCollections.observableArrayList;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,9 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.TextField;
 /**
  * Sets up the different action that many of the gui components do.
+ *
  * @author Zachary Maroney
  */
 public class Controller implements Initializable {
@@ -47,6 +47,12 @@ public class Controller implements Initializable {
   private Button productButton;
 
   @FXML
+  private TextField productTextBox;
+
+  @FXML
+  private TextField manufacturerTextBox;
+
+  @FXML
   private ChoiceBox<String> chooseType;
 
   /**
@@ -61,22 +67,24 @@ public class Controller implements Initializable {
   @FXML
   private ComboBox<String> chooseQuality;
 
+  /**
+   * sets the quality values in the combo box.
+   */
   private void qualityInitialize() {
-    chooseQuality
-        .setItems(observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
+    for (int i = 1; i <= 10; i++) {
+      chooseQuality.getItems().add(String.valueOf(i));
+    }
     chooseQuality.setEditable(true);
     chooseQuality.getSelectionModel().selectFirst();
   }
 
-
+  /**
+   *
+   */
   private void typeInitialize() {
-    String value;
-    ArrayList<String> type = new ArrayList<String>();
     for (ItemType item : ItemType.values()) {
-      value = item.type();
-      type.add(value);
+      chooseType.getItems().add(item.type());
     }
-    chooseType.setItems(observableArrayList(type));
   }
 
   /**
@@ -85,7 +93,25 @@ public class Controller implements Initializable {
   @FXML
   void printProduct(ActionEvent event) {
 
-    Widget myProduct = new Widget("iPhone", "Apple", ItemType.VISUAL_MOBILE);
+    String value = chooseType.getValue();
+    switch (value) {
+      case "Audio":
+        value = ItemType.AUDIO.code();
+        break;
+      case "Visual":
+        value = ItemType.VISUAL.code();
+        break;
+      case "Audio Mobile":
+        value = ItemType.AUDIO_MOBILE.code();
+        break;
+      case "Visual Mobile":
+        value = ItemType.VISUAL_MOBILE.code();
+        break;
+      default:
+        throw new IllegalStateException("Unexpected value: " + value);
+    }
+
+    Widget myProduct = new Widget(productTextBox.getText(), manufacturerTextBox.getText(), value);
 
     PreparedStatement storeProduct = null;
 
@@ -100,26 +126,55 @@ public class Controller implements Initializable {
       //STEP 3: Execute a query
       stmt = conn.createStatement();
 
-      String name = myProduct.getName();
-      String manufacturer = myProduct.getManufacturer();
-      String type = myProduct.getType();
-
       storeProduct = conn.prepareStatement(
           "INSERT INTO Product(name, manufacturer, type) VALUES(?, ?, ?)");
 
-      storeProduct.setString(1, name);
-      storeProduct.setString(2, manufacturer);
-      storeProduct.setString(3, type);
+      storeProduct.setString(1, myProduct.getName());
+      storeProduct.setString(2, myProduct.getManufacturer());
+      storeProduct.setString(3, myProduct.getType());
 
       storeProduct.execute();
+
+    } catch (ClassNotFoundException | SQLException e) {
+      e.printStackTrace();
+    }
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+
+      //STEP 2: Open a connection
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      // use driver manager to get a connection, that needs three arguments)
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+      //
+
+      String sqlSetAllFromJobs = "SELECT * FROM PRODUCT";
+
+      ResultSet rs = stmt.executeQuery(sqlSetAllFromJobs);
+      ResultSetMetaData rsmd = rs.getMetaData();
+
+      int columnNumber = rsmd.getColumnCount();
+
+      while (rs.next()) {
+        for (int i = 2; i <= columnNumber; i++) {
+          if (i > 2) {
+            System.out.print(",  ");
+          }
+          String columnValue = rs.getString(i);
+          System.out.print(rsmd.getColumnName(i) + ": " + columnValue);
+        }
+        System.out.println();
+      }
 
       // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
     } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();
-    }
 
+    }
   }
 
   /**
