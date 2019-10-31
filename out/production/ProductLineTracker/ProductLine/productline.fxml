@@ -46,8 +46,8 @@
                         <Font size="16.0" />
                       </font>
                     </Button>
-                    <ComboBox fx:id="chooseQuality" layoutX="230.0" layoutY="9.0" prefWidth="150.0" />
-                    <Label layoutX="54.0" layoutY="9.0" prefHeight="17.0" prefWidth="119.0" text="Choose Quality:">
+                    <ComboBox fx:id="chooseQuantity" layoutX="230.0" layoutY="9.0" prefWidth="150.0" />
+                    <Label layoutX="54.0" layoutY="9.0" prefHeight="17.0" prefWidth="119.0" text="Choose Quantity:">
                       <font>
                         <Font size="16.0" />
                       </font>
@@ -55,7 +55,7 @@
                   </children>
                 </Pane>
                 <Pane layoutX="29.0" layoutY="19.0" prefHeight="200.0" prefWidth="184.0" style="-fx-background-color: lightgrey;" />
-                <ListView layoutX="29.0" layoutY="51.0" prefHeight="273.0" prefWidth="443.0" />
+                <ListView fx:id="recordProductionListView" layoutX="29.0" layoutY="51.0" prefHeight="273.0" prefWidth="443.0" />
                 <Label layoutX="42.0" layoutY="19.0" prefHeight="32.0" prefWidth="164.0" text="Choose Product">
                   <font>
                     <Font size="22.0" />
@@ -69,7 +69,7 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TextArea layoutX="15.0" layoutY="11.0" prefHeight="449.0" prefWidth="471.0" />
+                <TextArea fx:id="productionLog" layoutX="15.0" layoutY="11.0" prefHeight="449.0" prefWidth="471.0" />
               </children>
             </AnchorPane>
           </content>
@@ -124,9 +124,9 @@
                     </Label>
                     <TableView id="productTable" fx:id="productTable" layoutX="10.0" layoutY="44.0" prefHeight="200.0" prefWidth="420.0" stylesheets="@Style.css">
                       <columns>
-                        <TableColumn prefWidth="140.0" text="Product Name" />
-                        <TableColumn minWidth="0.0" prefWidth="140.0" text="Manufacturer" />
-                        <TableColumn minWidth="0.0" prefWidth="140.0" text="Item Type" />
+                        <TableColumn fx:id="prodNameCol" prefWidth="140.0" text="Product Name" />
+                        <TableColumn fx:id="manufacturerCol" minWidth="0.0" prefWidth="140.0" text="Manufacturer" />
+                        <TableColumn fx:id="itemTypeCol" minWidth="0.0" prefWidth="140.0" text="Item Type" />
                       </columns>
                       <cursor>
                         <Cursor fx:constant="CROSSHAIR" />

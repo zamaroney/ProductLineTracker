@@ -6,29 +6,33 @@
 
 package ProductLine;
 
-import java.net.URL;
+import static ProductLine.ItemType.AUDIO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
  * Sets up the different action that many of the gui components do.
  *
  * @author Zachary Maroney
  */
-public class Controller implements Initializable {
+public class Controller {
 
   final String JDBC_DRIVER = "org.h2.Driver";
   final String DB_URL = "jdbc:h2:./res/PR";
@@ -39,6 +43,10 @@ public class Controller implements Initializable {
   Connection conn = null;
   // initialize connections
   Statement stmt = null;
+
+  // Initialize the product Observable Array
+  ObservableList<Product> products = FXCollections.observableArrayList();
+  ObservableList<String> Records = FXCollections.observableArrayList();
 
   /**
    * Button that sends data about a product to the product table.
@@ -53,6 +61,9 @@ public class Controller implements Initializable {
   private TextField manufacturerTextBox;
 
   @FXML
+  private TextArea productionLog;
+
+  @FXML
   private ChoiceBox<String> chooseType;
 
   /**
@@ -62,20 +73,33 @@ public class Controller implements Initializable {
   private Button recordButton;
 
   @FXML
-  private TableView<?> productTable;
+  private TableView<Product> productTable;
 
   @FXML
-  private ComboBox<String> chooseQuality;
+  private TableColumn<?, ?> prodNameCol;
+
+  @FXML
+  private TableColumn<?, ?> manufacturerCol;
+
+  @FXML
+  private TableColumn<?, ?> itemTypeCol;
+
+
+  @FXML
+  private ComboBox<String> chooseQuantity;
+
+  @FXML
+  private ListView<Product> recordProductionListView;
 
   /**
    * sets the quality values in the combo box.
    */
-  private void qualityInitialize() {
+  private void quantityInitialize() {
     for (int i = 1; i <= 10; i++) {
-      chooseQuality.getItems().add(String.valueOf(i));
+      chooseQuantity.getItems().add(String.valueOf(i));
     }
-    chooseQuality.setEditable(true);
-    chooseQuality.getSelectionModel().selectFirst();
+    chooseQuantity.setEditable(true);
+    chooseQuantity.getSelectionModel().selectFirst();
   }
 
   /**
@@ -88,74 +112,67 @@ public class Controller implements Initializable {
   }
 
   /**
+   *
+   */
+  private void insertProductTable() {
+    prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    manufacturerCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    itemTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    productTable.setItems(products);
+  }
+
+  /**
    * action event that sends an example product to the product table.
    */
   @FXML
   void printProduct(ActionEvent event) {
 
     String value = chooseType.getValue();
+    ItemType type;
     switch (value) {
       case "Audio":
-        value = ItemType.AUDIO.code();
+        type = AUDIO;
         break;
       case "Visual":
-        value = ItemType.VISUAL.code();
+        type = ItemType.VISUAL;
         break;
       case "Audio Mobile":
-        value = ItemType.AUDIO_MOBILE.code();
+        type = ItemType.AUDIO_MOBILE;
         break;
       case "Visual Mobile":
-        value = ItemType.VISUAL_MOBILE.code();
+        type = ItemType.VISUAL_MOBILE;
         break;
       default:
         throw new IllegalStateException("Unexpected value: " + value);
     }
 
-    Widget myProduct = new Widget(productTextBox.getText(), manufacturerTextBox.getText(), value);
+    Widget myProduct = new Widget(productTextBox.getText(), manufacturerTextBox.getText(), type);
 
     PreparedStatement storeProduct = null;
 
-    try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
+    products.add(myProduct);
 
-      //STEP 2: Open a connection
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      // use driver manager to get a connection, that needs three arguments)
-
-      //STEP 3: Execute a query
-      stmt = conn.createStatement();
-
+    /*try {
       storeProduct = conn.prepareStatement(
           "INSERT INTO Product(name, manufacturer, type) VALUES(?, ?, ?)");
 
       storeProduct.setString(1, myProduct.getName());
       storeProduct.setString(2, myProduct.getManufacturer());
-      storeProduct.setString(3, myProduct.getType());
+      storeProduct.setString(3, myProduct.getType().code());
 
       storeProduct.execute();
 
-    } catch (ClassNotFoundException | SQLException e) {
+    } catch (SQLException e) {
       e.printStackTrace();
     }
     try {
-      // STEP 1: Register JDBC driver
-      Class.forName(JDBC_DRIVER);
-
-      //STEP 2: Open a connection
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      // use driver manager to get a connection, that needs three arguments)
-
-      //STEP 3: Execute a query
-      stmt = conn.createStatement();
-      //
-
       String sqlSetAllFromJobs = "SELECT * FROM PRODUCT";
 
       ResultSet rs = stmt.executeQuery(sqlSetAllFromJobs);
       ResultSetMetaData rsmd = rs.getMetaData();
 
       int columnNumber = rsmd.getColumnCount();
+      StringBuilder text;
 
       while (rs.next()) {
         for (int i = 2; i <= columnNumber; i++) {
@@ -167,14 +184,12 @@ public class Controller implements Initializable {
         }
         System.out.println();
       }
-
-      // STEP 4: Clean-up environment
       stmt.close();
       conn.close();
-    } catch (ClassNotFoundException | SQLException e) {
+    } catch (SQLException e) {
       e.printStackTrace();
 
-    }
+    }*/
   }
 
   /**
@@ -182,12 +197,35 @@ public class Controller implements Initializable {
    */
   @FXML
   void printRecord(ActionEvent event) {
-    System.out.println("Recorded new product!");
+    ProductionRecord record = new ProductionRecord(
+        recordProductionListView.getSelectionModel().getSelectedItem(),
+        Integer.parseInt(chooseQuantity.getSelectionModel().getSelectedItem()));
+    productionLog.appendText(record.toString());
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    qualityInitialize();
+
+  public void initialize() {
+    try {
+      // STEP 1: Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+
+      //STEP 2: Open a connection
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      // use driver manager to get a connection, that needs three arguments)
+
+      //STEP 3: Execute a query
+      stmt = conn.createStatement();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    quantityInitialize();
     typeInitialize();
+    AudioPlayerDriver.testAudioPlayer();
+    MoviePlayerDriver.testMoviePlayer();
+    insertProductTable();
+    recordProductionListView.setItems(products);
   }
+
 }

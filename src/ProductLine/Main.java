@@ -12,22 +12,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/***
+
+/**
+ * Driver class for the ProductLineTracker program.
+ *
  * @author Zachary Maroney
  */
 
 public class Main extends Application {
-
-  /**
-   * @author Zachary Maroney
-   */
 
   @Override
 
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("productline.fxml"));
     primaryStage.setTitle("Product Line");
-    primaryStage.setScene(new Scene(root, 530, 520));
+    primaryStage.setScene(new Scene(root
+        //,530, 520)
+        ));
     primaryStage.show();
   }
 
@@ -35,5 +36,8 @@ public class Main extends Application {
    * @author Zachary Maroney
    */
 
-  public static void main(String[] args) { launch(args); }
-}
+ public static void main(String[] args) {
+    launch(args);
+  }
+  }
+

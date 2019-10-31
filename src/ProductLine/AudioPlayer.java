@@ -1,15 +1,20 @@
 package ProductLine;
 
+/**
+ * Simulates the functionality of a audio player and adds audio description to a possible product.
+ *
+ * @author Zachary Maroney
+ */
 public class AudioPlayer extends Product implements MultimediaControl {
 
-  private String mediaType;
+  private String supportedAudioFormats;
+  private String supportedPlaylistFormats;
 
-  private ItemType type = ItemType.AUDIO;
-
-  public AudioPlayer(String name, String manufacturer, String audioSpecification,
-      String mediaType) {
-    super(name, manufacturer, audioSpecification);
-    this.mediaType = mediaType;
+  public AudioPlayer(String name, String manufacturer,
+      String supportedAudioFormats, String supportedPlaylistFormats) {
+    super(name, manufacturer, ItemType.AUDIO);
+    this.supportedAudioFormats = supportedAudioFormats;
+    this.supportedPlaylistFormats = supportedPlaylistFormats;
   }
 
   @Override
@@ -19,7 +24,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
 
   @Override
   public void stop() {
-    System.out.println("Stopped");
+    System.out.println("Stopping");
   }
 
   @Override
@@ -34,8 +39,8 @@ public class AudioPlayer extends Product implements MultimediaControl {
 
   @Override
   public String toString() {
-    return "Name: " + getName() + "\nManufacturer: " + getManufacturer() + "\ntype: " + type
-        + "\nSupported Audio Formats: " + getType() + "\nSupported Playlist Formats: "
-        + mediaType;
+    return super.toString() + "\nSupported Audio Formats: " + supportedAudioFormats
+        + "\nSupported Playlist Formats: "
+        + supportedPlaylistFormats;
   }
 }

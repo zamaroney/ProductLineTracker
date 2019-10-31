@@ -1,13 +1,19 @@
 package ProductLine;
 
+/**
+ * Declares Product fields.
+ * Declares nonabstract methods for Products.
+ *
+ * @author Zachary Maroney
+ */
 public abstract class Product implements Item {
 
   private int id;
-  private String type;
+  private ItemType type;
   private String manufacturer;
   private String name;
 
-  public Product (String name, String manufacturer, String type) {
+  public Product (String name, String manufacturer, ItemType type) {
     this.manufacturer = manufacturer;
     this.name = name;
     this.type = type;
@@ -38,19 +44,19 @@ public abstract class Product implements Item {
     return manufacturer;
   }
 
-  public String getType() {
+  public ItemType getType() {
     return type;
   }
 
   @Override
   public String toString() {
-    return "Name: "+name+"\nManufacturer: "+manufacturer+"\nType: "+type;
+    return "Name: "+name+"\nManufacturer: "+manufacturer+"\nType: "+type.type();
   }
 
 }
 class Widget extends Product {
 
-  public Widget(String name, String manufacturer, String type) {
+  public Widget(String name, String manufacturer, ItemType type) {
     super(name, manufacturer, type);
   }
 
