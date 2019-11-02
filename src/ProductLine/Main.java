@@ -21,8 +21,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+  /**
+   * Opens the scene in a new window.
+   *
+   * @param primaryStage Sets up the initial Stage.
+   * @throws Exception
+   */
   @Override
-
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("productline.fxml"));
     primaryStage.setTitle("Product Line");

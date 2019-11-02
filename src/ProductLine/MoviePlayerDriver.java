@@ -7,6 +7,9 @@ package ProductLine;
  */
 public class MoviePlayerDriver {
 
+  /**
+   * Simulates a MoviePlayer being created.
+   */
   public static void testMoviePlayer() {
     Screen newScreen = new Screen("720x480", 40, 22);
     MoviePlayer newMovieProduct = new MoviePlayer("DBPOWER MK101", "OracleProduction", newScreen,

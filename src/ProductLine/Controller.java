@@ -1,9 +1,3 @@
-/**
- * Created by: Zachary Maroney
- * <p>
- * This is the implements all the gui components and imports all tje sql/FXML libraries.
- */
-
 package ProductLine;
 
 import static ProductLine.ItemType.AUDIO;
@@ -11,6 +5,8 @@ import static ProductLine.ItemType.AUDIO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
@@ -54,15 +50,27 @@ public class Controller {
   @FXML
   private Button productButton;
 
+  /**
+   * User input for the name of a new Product.
+   */
   @FXML
   private TextField productTextBox;
 
+  /**
+   * User input for the Manufacturer of a new Product.
+   */
   @FXML
   private TextField manufacturerTextBox;
 
+  /**
+   * records of the products recorded.
+   */
   @FXML
   private TextArea productionLog;
 
+  /**
+   * The different typed that an Item can be.
+   */
   @FXML
   private ChoiceBox<String> chooseType;
 
@@ -72,22 +80,39 @@ public class Controller {
   @FXML
   private Button recordButton;
 
+  /**
+   * List of products that can be produced
+   */
   @FXML
   private TableView<Product> productTable;
 
+  /**
+   * Product column.
+   */
   @FXML
   private TableColumn<?, ?> prodNameCol;
 
+  /**
+   * Manufacturer column.
+   */
   @FXML
   private TableColumn<?, ?> manufacturerCol;
 
+  /**
+   * Item column.
+   */
   @FXML
   private TableColumn<?, ?> itemTypeCol;
 
-
+  /**
+   * Allows users to select of a product to be produced or create their own number.
+   */
   @FXML
   private ComboBox<String> chooseQuantity;
 
+  /**
+   * Shows the records of the product produced.
+   */
   @FXML
   private ListView<Product> recordProductionListView;
 
@@ -103,7 +128,7 @@ public class Controller {
   }
 
   /**
-   *
+   * Adds the items type to the choice box.
    */
   private void typeInitialize() {
     for (ItemType item : ItemType.values()) {
@@ -112,7 +137,7 @@ public class Controller {
   }
 
   /**
-   *
+   * Sets up the product table with existing products created by the user.
    */
   private void insertProductTable() {
     prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -122,7 +147,9 @@ public class Controller {
   }
 
   /**
-   * action event that sends an example product to the product table.
+   * Creates a user created product and stores it into a observable list.
+   *
+   * @param event button is clicked.
    */
   @FXML
   void printProduct(ActionEvent event) {
@@ -148,11 +175,11 @@ public class Controller {
 
     Widget myProduct = new Widget(productTextBox.getText(), manufacturerTextBox.getText(), type);
 
-    PreparedStatement storeProduct = null;
+    PreparedStatement storeProduct;
 
     products.add(myProduct);
 
-    /*try {
+    try {
       storeProduct = conn.prepareStatement(
           "INSERT INTO Product(name, manufacturer, type) VALUES(?, ?, ?)");
 
@@ -189,11 +216,13 @@ public class Controller {
     } catch (SQLException e) {
       e.printStackTrace();
 
-    }*/
+    }
   }
 
   /**
-   * action event that sends a message to the console.
+   * Append the record to display the recording of a products production.
+   *
+   * @param event button is clicked.
    */
   @FXML
   void printRecord(ActionEvent event) {
@@ -204,6 +233,9 @@ public class Controller {
   }
 
 
+  /**
+   * Preforms methods that will always be preformed when the application opens.
+   */
   public void initialize() {
     try {
       // STEP 1: Register JDBC driver
@@ -215,9 +247,7 @@ public class Controller {
 
       //STEP 3: Execute a query
       stmt = conn.createStatement();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (SQLException e) {
+    } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();
     }
     quantityInitialize();

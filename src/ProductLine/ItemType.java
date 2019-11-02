@@ -12,18 +12,34 @@ public enum ItemType {
   AUDIO_MOBILE("Audio Mobile", "AM"),
   VISUAL_MOBILE("Visual Mobile", "VM");
 
+  /**
+   * Good looking typed out ItemType.
+   */
   private final String type;
+  /**
+   * Two length String code for the ItemType.
+   */
   private final String code;
 
+  /**
+   * @param type Good looking typed out ItemType.
+   * @param code Two length String code for the ItemType.
+   */
   ItemType(String type, String code) {
     this.type = type;
     this.code = code;
   }
 
+  /**
+   * @return Good looking typed out ItemType.
+   */
   public String type() {
     return this.type;
   }
 
+  /**
+   * @return Two length String code for the ItemType.
+   */
   public String code() {
     return this.code;
   }

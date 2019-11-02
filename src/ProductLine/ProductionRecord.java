@@ -1,37 +1,72 @@
 package ProductLine;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
+ * Records the time that a product is produced and assigns fields and methods to record the
+ * information.
+ *
  * @author Zachary Maroney
  */
 public class ProductionRecord {
 
+  /**
+   * Assigned production number of the object.
+   */
   private int productionNumber;
-  private int productID;
+
+  /**
+   * Assigned production name of the product.
+   */
+  private String productName;
+
+  /**
+   * Coded String that represent the production.
+   */
   private String serialNumber;
-  private Date dateProduced;
+
+  /**
+   * Time that the product was recorded to be produced.
+   */
+  private Date dateProduced = new Date();
 
 
-  public ProductionRecord(int productID) {
-    this.productID = productID;
+  /**
+   * Takes a Product name and assigns a generic product number and serial number.
+   *
+   * @param productName String product name.
+   */
+  public ProductionRecord(String productName) {
+    this.productName = productName;
     this.productionNumber = 0;
     this.serialNumber = "0";
-    this.dateProduced = new Date();
   }
 
-  public ProductionRecord(int productionNumber, int productID, String serialNumber,
+  /**
+   * Hard coded product to be produced.
+   *
+   * @param productionNumber int Assigned production number of the object.
+   * @param productName String Assigned production name of the product.
+   * @param serialNumber String Coded String that represent the production.
+   * @param dateProduced Date Time that the product was recorded to be produced.
+   */
+  public ProductionRecord(int productionNumber, String productName, String serialNumber,
       Date dateProduced) {
     this.productionNumber = productionNumber;
-    this.productID = productID;
+    this.productName = productName;
     this.serialNumber = serialNumber;
     this.dateProduced = dateProduced;
   }
 
+  /**
+   * Takes a product and generates record fields
+   *
+   * @param product Product current product being recorded.
+   * @param quantity int number of products to be created.
+   */
   public ProductionRecord(Product product, int quantity) {
+    setProductName(product.getName());
     String company = product.getManufacturer();
     String companyLetters = null;
     if (company.length() > 3) {
@@ -40,7 +75,6 @@ public class ProductionRecord {
     String productType = product.getType().code();
     String uniqueCode = String.format("%05d", quantity);
     serialNumber = companyLetters + productType + uniqueCode;
-    setProdDate(new Date());
   }
 
   /**
@@ -58,17 +92,17 @@ public class ProductionRecord {
   }
 
   /**
-   * @return int private prodcutID value
+   * @return String private prodcutName value
    */
-  public int getProductID() {
-    return productID;
+  public String getProductName() {
+    return productName;
   }
 
   /**
-   * @param productID int changes the private productID value
+   * @param productName String changes the private productName value
    */
-  public void setProductID(int productID) {
-    this.productID = productID;
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
   /**
@@ -99,9 +133,12 @@ public class ProductionRecord {
     this.dateProduced = dateProduced;
   }
 
+  /**
+   * @return information about the production record.
+   */
   @Override
   public String toString() {
-    return "Prod. Num: " + getProductionNum() + " Product ID: " + getProductID()
+    return "Prod. Num: " + getProductionNum() + " Product Name: " + getProductName()
         + " Serial Num: " + getSerialNum() + " Date: " + new SimpleDateFormat()
         .format(getProdDate()) + "\n";
   }
