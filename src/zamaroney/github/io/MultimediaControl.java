@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
  * Initilizes methods that would be used for a media product.

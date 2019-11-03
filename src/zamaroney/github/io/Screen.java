@@ -1,8 +1,8 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
- * Define Screen fields that give information about the screen.
- * Creates methods that allow other classes to grab the information about a field.
+ * Define Screen fields that give information about the screen. Creates methods that allow other
+ * classes to grab the information about a field.
  *
  * @author Zachary Maroney
  */
@@ -26,9 +26,9 @@ public class Screen implements ScreenSpec {
   /**
    * Creates a Screen Object.
    *
-   * @param resolution String Resolution of the screen.
+   * @param resolution    String Resolution of the screen.
    * @param refresherRate int Refresh rate of the screen.
-   * @param responseTime int Response time of the screen.
+   * @param responseTime  int Response time of the screen.
    */
   public Screen(String resolution, int refresherRate, int responseTime) {
     this.resolution = resolution;
@@ -37,6 +37,8 @@ public class Screen implements ScreenSpec {
   }
 
   /**
+   * Gets the resolution.
+   *
    * @return Resolution of the screen.
    */
   @Override
@@ -45,6 +47,8 @@ public class Screen implements ScreenSpec {
   }
 
   /**
+   * Gets the refresh rate.
+   *
    * @return Refresh rate of the screen.
    */
   @Override
@@ -53,6 +57,8 @@ public class Screen implements ScreenSpec {
   }
 
   /**
+   * Gets the response time.
+   *
    * @return Response time of the screen.
    */
   @Override
@@ -61,11 +67,14 @@ public class Screen implements ScreenSpec {
   }
 
   /**
+   * Gets the information about the screen in a String.
+   *
    * @return Information about the screen specifics.
    */
   @Override
   public String toString() {
-    return "Screen:\nResolution: " + resolution + "\nRefresh rate: " + refresherRate + "\nResponse time: "
+    return "Screen:\nResolution: " + resolution + "\nRefresh rate: " + refresherRate
+        + "\nResponse time: "
         + responseTime;
   }
 }

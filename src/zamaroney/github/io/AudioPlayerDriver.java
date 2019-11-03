@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
  * Drive class to test the AudioPlayer class.
@@ -8,7 +8,7 @@ package ProductLine;
 public class AudioPlayerDriver {
 
   /**
-   *
+   * Tests the AudioPlayer to use its methods and create an AudioPlayer.
    */
   public static void testAudioPlayer() {
     AudioPlayer newAudioProduct = new AudioPlayer("DP-X1A", "Onkyo",

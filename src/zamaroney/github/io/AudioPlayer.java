@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
  * Simulates the functionality of a audio player and adds audio description to a possible product.
@@ -16,6 +16,14 @@ public class AudioPlayer extends Product implements MultimediaControl {
    */
   private String supportedPlaylistFormats;
 
+  /**
+   * Creates an Audio player Object.
+   *
+   * @param name String Product name.
+   * @param manufacturer String Product manufacturer.
+   * @param supportedAudioFormats String supported audio formats for the audio device.
+   * @param supportedPlaylistFormats String Supported audio playlist for the audio device.
+   */
   public AudioPlayer(String name, String manufacturer,
       String supportedAudioFormats, String supportedPlaylistFormats) {
     super(name, manufacturer, ItemType.AUDIO);
@@ -56,6 +64,8 @@ public class AudioPlayer extends Product implements MultimediaControl {
   }
 
   /**
+   * To create a nice looking String to display information.
+   *
    * @return String information about the audio player
    */
   @Override

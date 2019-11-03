@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
  * creates a set of static variables types with string associated with them that indicated the code
@@ -22,6 +22,8 @@ public enum ItemType {
   private final String code;
 
   /**
+   * Gets the two String associated with the ItemType Enum.
+   *
    * @param type Good looking typed out ItemType.
    * @param code Two length String code for the ItemType.
    */
@@ -31,6 +33,8 @@ public enum ItemType {
   }
 
   /**
+   * Gets the type String associated with the Enum.
+   *
    * @return Good looking typed out ItemType.
    */
   public String type() {
@@ -38,6 +42,8 @@ public enum ItemType {
   }
 
   /**
+   * Gets the code String associated with the Enum.
+   *
    * @return Two length String code for the ItemType.
    */
   public String code() {

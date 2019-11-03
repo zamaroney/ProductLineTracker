@@ -1,8 +1,7 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
- * Declares Product fields.
- * Declares nonabstract methods for Products.
+ * Declares Product fields. Declares nonabstract methods for Products.
  *
  * @author Zachary Maroney
  */
@@ -31,18 +30,20 @@ public abstract class Product implements Item {
   /**
    * Creates a product Object.
    *
-   * @param name String product name.
+   * @param name         String product name.
    * @param manufacturer String product manufacturer.
-   * @param type ItemType product type.
+   * @param type         ItemType product type.
    */
-  public Product (String name, String manufacturer, ItemType type) {
+  public Product(String name, String manufacturer, ItemType type) {
     this.manufacturer = manufacturer;
     this.name = name;
     this.type = type;
   }
 
   /**
-   * @return Product ID number.
+   * Gets the product's ID number.
+   *
+   * @return Product's ID number.
    */
   @Override
   public int getId() {
@@ -50,6 +51,8 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Sets the product's name.
+   *
    * @param name String sets the private String name.
    */
   @Override
@@ -58,6 +61,8 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Gets the product's name.
+   *
    * @return The private String name of the product.
    */
   @Override
@@ -66,6 +71,8 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Sets the product's manufacturer.
+   *
    * @param manufacturer String sets the manufacturer of the product.
    */
   @Override
@@ -74,6 +81,8 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Gets the product's manufacturer.
+   *
    * @return The private String manufacturer of the product.
    */
   @Override
@@ -82,6 +91,8 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Gets the product's type.
+   *
    * @return The private ItemType type of the product.
    */
   public ItemType getType() {
@@ -89,11 +100,13 @@ public abstract class Product implements Item {
   }
 
   /**
+   * Displays the information about the product.
+   *
    * @return Information about the product.
    */
   @Override
   public String toString() {
-    return "Name: "+name+"\nManufacturer: "+manufacturer+"\nType: "+type.type();
+    return "Name: " + name + "\nManufacturer: " + manufacturer + "\nType: " + type.type();
   }
 
 }
@@ -108,9 +121,9 @@ class Widget extends Product {
   /**
    * Test Product to make an actual Object.
    *
-   * @param name Test product name.
+   * @param name         Test product name.
    * @param manufacturer Test product manufacturer.
-   * @param type Test product type.
+   * @param type         Test product type.
    */
   public Widget(String name, String manufacturer, ItemType type) {
     super(name, manufacturer, type);

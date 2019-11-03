@@ -1,6 +1,6 @@
-package ProductLine;
+package zamaroney.github.io;
 
-import static ProductLine.ItemType.AUDIO;
+import static zamaroney.github.io.ItemType.AUDIO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,10 +30,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class Controller {
 
-  final String JDBC_DRIVER = "org.h2.Driver";
-  final String DB_URL = "jdbc:h2:./res/PR";
-  final String USER = "";
-  final String PASS = "";
+  static final String JDBC_DRIVER = "org.h2.Driver";
+  static final String DB_URL = "jdbc:h2:./res/PR";
+  static final String USER = "";
+  static final String PASS = "";
 
   //  Database credentials
   Connection conn = null;
@@ -42,8 +42,6 @@ public class Controller {
 
   // Initialize the product Observable Array
   ObservableList<Product> products = FXCollections.observableArrayList();
-  ObservableList<String> Records = FXCollections.observableArrayList();
-
   /**
    * Button that sends data about a product to the product table.
    */
@@ -81,7 +79,7 @@ public class Controller {
   private Button recordButton;
 
   /**
-   * List of products that can be produced
+   * List of products that can be produced.
    */
   @FXML
   private TableView<Product> productTable;

@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,9 +47,9 @@ public class ProductionRecord {
    * Hard coded product to be produced.
    *
    * @param productionNumber int Assigned production number of the object.
-   * @param productName String Assigned production name of the product.
-   * @param serialNumber String Coded String that represent the production.
-   * @param dateProduced Date Time that the product was recorded to be produced.
+   * @param productName      String Assigned production name of the product.
+   * @param serialNumber     String Coded String that represent the production.
+   * @param dateProduced     Date Time that the product was recorded to be produced.
    */
   public ProductionRecord(int productionNumber, String productName, String serialNumber,
       Date dateProduced) {
@@ -60,9 +60,9 @@ public class ProductionRecord {
   }
 
   /**
-   * Takes a product and generates record fields
+   * Takes a product and generates record fields.
    *
-   * @param product Product current product being recorded.
+   * @param product  Product current product being recorded.
    * @param quantity int number of products to be created.
    */
   public ProductionRecord(Product product, int quantity) {
@@ -78,6 +78,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Gets the production number.
+   *
    * @return int private productNumber value
    */
   public int getProductionNum() {
@@ -85,6 +87,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Sets the production number.
+   *
    * @param productionNumber int changes the private productNumber value
    */
   public void setProductionNum(int productionNumber) {
@@ -92,13 +96,17 @@ public class ProductionRecord {
   }
 
   /**
-   * @return String private prodcutName value
+   * Gets the product's name.
+   *
+   * @return String private productName value
    */
   public String getProductName() {
     return productName;
   }
 
   /**
+   * Sets the product's name.
+   *
    * @param productName String changes the private productName value
    */
   public void setProductName(String productName) {
@@ -106,6 +114,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Gets the serial number.
+   *
    * @return String private serialNumber value
    */
   public String getSerialNum() {
@@ -113,6 +123,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Sets the serial number.
+   *
    * @param serialNumber String changes the private productSerial value
    */
   public void setSerialNum(String serialNumber) {
@@ -120,6 +132,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Gets the production date.
+   *
    * @return Date private dateProduced value
    */
   public Date getProdDate() {
@@ -127,6 +141,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Sets the production date.
+   *
    * @param dateProduced Date changes the private dateProduced value
    */
   public void setProdDate(Date dateProduced) {
@@ -134,6 +150,8 @@ public class ProductionRecord {
   }
 
   /**
+   * Displays the information about the production record.
+   *
    * @return information about the production record.
    */
   @Override

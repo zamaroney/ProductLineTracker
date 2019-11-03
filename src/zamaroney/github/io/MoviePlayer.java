@@ -1,4 +1,4 @@
-package ProductLine;
+package zamaroney.github.io;
 
 /**
  * Simulates the functionality of a movie player and adds screen description to a possible product.
@@ -12,11 +12,13 @@ public class MoviePlayer extends Product implements MultimediaControl {
    */
   private Screen screen;
   /**
-   * The Enum MonitorType
+   * The Enum MonitorType.
    */
   private MonitorType monitorType;
 
   /**
+   * Creates a MoviePayer Object.
+   *
    * @param name Product name.
    * @param manufacturer Product manufacturer.
    * @param screen Product screen details.
@@ -61,6 +63,8 @@ public class MoviePlayer extends Product implements MultimediaControl {
   }
 
   /**
+   * Display Screen and Monitor information.
+   *
    * @return Information about the screen and Monitor type into a String.
    */
   @Override
