@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Author: Zachary Maroney-->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -69,7 +71,7 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TextArea fx:id="productionLog" layoutX="15.0" layoutY="11.0" prefHeight="449.0" prefWidth="471.0" />
+                <TextArea fx:id="productionLog" editable="false" layoutX="15.0" layoutY="11.0" prefHeight="449.0" prefWidth="471.0" />
               </children>
             </AnchorPane>
           </content>
@@ -112,7 +114,7 @@
                         <Insets left="1.0" />
                       </GridPane.margin>
                     </ChoiceBox>
-                              <AnchorPane layoutX="230.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" />
+                    <AnchorPane layoutX="230.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" />
                   </children>
                 </GridPane>
                 <Pane layoutX="29.0" layoutY="202.0" prefHeight="245.0" prefWidth="444.0" style="-fx-background-color: lightgrey;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="188.0">

@@ -224,12 +224,13 @@ public class Controller {
    */
   @FXML
   void printRecord(ActionEvent event) {
-    ProductionRecord record = new ProductionRecord(
-        recordProductionListView.getSelectionModel().getSelectedItem(),
-        Integer.parseInt(chooseQuantity.getSelectionModel().getSelectedItem()));
-    productionLog.appendText(record.toString());
+    int quantity = Integer.parseInt(chooseQuantity.getSelectionModel().getSelectedItem());
+    for (int sequence = 0; sequence < quantity; sequence++) {
+      ProductionRecord record = new ProductionRecord(
+          recordProductionListView.getSelectionModel().getSelectedItem(), sequence);
+      productionLog.appendText(record.toString());
+    }
   }
-
 
   /**
    * Preforms methods that will always be preformed when the application opens.
@@ -255,5 +256,4 @@ public class Controller {
     insertProductTable();
     recordProductionListView.setItems(products);
   }
-
 }
