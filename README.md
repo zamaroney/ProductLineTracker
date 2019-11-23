@@ -1,4 +1,4 @@
-## Product Line Tracker
+# Product Line Tracker
 ## Demonstration
 ## Documentation
 ## Diagrams
