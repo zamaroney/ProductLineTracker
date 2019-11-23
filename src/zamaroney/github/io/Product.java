@@ -1,7 +1,7 @@
 package zamaroney.github.io;
 
 /**
- * Declares Product fields. Declares nonabstract methods for Products.
+ * Declares Product fields. Declares non-abstract methods for Products.
  *
  * @author Zachary Maroney
  */

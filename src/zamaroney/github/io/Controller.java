@@ -121,12 +121,21 @@ public class Controller {
   @FXML
   private ListView<Product> recordProductionListView;
 
+  /**
+   * User entered first and last name.
+   */
   @FXML
   private TextField firstLastNameTxtFld;
 
+  /**
+   * user entered password.
+   */
   @FXML
   private PasswordField passwordTxtFld;
 
+  /**
+   * Information about the user.
+   */
   @FXML
   private TextArea userInformationTextArea;
 
@@ -145,7 +154,7 @@ public class Controller {
       } catch (IOException e) {
         e.printStackTrace();
       }
-      PASS = prop.getProperty("password");
+      PASS = reverseString(prop.getProperty("password"));
 
       //STEP 2: Open a connection
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -228,10 +237,18 @@ public class Controller {
           recordProductionListView.getSelectionModel().getSelectedItem(), sequence);
       productRun.add(record);
     }
+    recordProductionListView.getSelectionModel().clearSelection();
     addToProductDB(productRun);
     loadProductionLog();
   }
 
+  /**
+   * creates a new employee and sets the employee information to show the information about the
+   * employee.
+   *
+   * @param event user preforms the action of clicking the buttons or pressing spacebar while the
+   *              button is hovered.
+   */
   @FXML
   void createEmployee(ActionEvent event) {
     Employee employee = new Employee(firstLastNameTxtFld.getText(), passwordTxtFld.getText());
@@ -268,6 +285,9 @@ public class Controller {
     productTable.setItems(products);
   }
 
+  /**
+   * Loads all the current products into the product listView.
+   */
   private void loadProductionList() {
     String sql = "SELECT * FROM PRODUCT";
     try {
@@ -307,6 +327,11 @@ public class Controller {
     }
   }
 
+  /**
+   * Adds a product to the production record database.
+   *
+   * @param productionRecords The Product that are going to be added to the production database.
+   */
   private void addToProductDB(ObservableList<ProductionRecord> productionRecords) {
 
     PreparedStatement storeProduct;
@@ -327,6 +352,11 @@ public class Controller {
     }
   }
 
+  /**
+   * Loads the Production log from the database.
+   *
+   * @return ObservableList of the products that are recorded to be produced.
+   */
   private ObservableList<ProductionRecord> loadProductionLog() {
     ObservableList<ProductionRecord> records = FXCollections.observableArrayList();
     String sql = "SELECT * FROM PRODUCTIONRECORD";
@@ -352,8 +382,26 @@ public class Controller {
     return records;
   }
 
+  /**
+   * Sets the text of the production log to show all the products produced.
+   *
+   * @param records The listof products to be shown in the text box.
+   */
   private void showProduction(ObservableList<ProductionRecord> records) {
     productionLog.setText(records.toString().replace("[", "").replace("]", "").replace(", ", ""));
+  }
+
+  /**
+   * Reverses a String value.
+   *
+   * @param pw String to be reversed.
+   * @return String reverse version of the String.
+   */
+  private String reverseString(String pw) {
+    if (pw.isEmpty()) {
+      return pw;
+    }
+    return reverseString(pw.substring(1)) + pw.charAt(0);
   }
 
 }
