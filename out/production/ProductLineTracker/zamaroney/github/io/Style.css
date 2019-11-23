@@ -1,0 +1,22 @@
+/*
+@author Zachary Maroney
+ */
+
+.button {
+  -fx-text-fill: black;
+  -fx-font-family: Arial;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0.0, 0, .5);
+}
+
+.button:hover {
+  -fx-background-color: linear-gradient(#b1f0d2, #8dcdb5);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0.0, 0, .5);
+}
+
+.button:focused {
+  -fx-background-color: linear-gradient(#9cdec5, #baffdf);
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .3), 5, 0.0, 0, .5);
+}
+
+body{ background-color:#d2d2d2;}#canvas{ background-color:#000; display:block; margin:auto;}#logo{ display:none;}
