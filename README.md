@@ -15,10 +15,12 @@ This Project was a major part of the Objective Oriented Class at Florida Gulf Co
 
 ## Diagrams
 Java Diagram
- ![IMAGE](docs/ProdLineDiagram.PNG)
 
- Database 
- ![IMAGE](docs/DatabaseDiagram.PNG)
+ ![IMAGE](docs/OOPClassDiagram.PNG)
+
+ Database
+ 
+ ![IMAGE](docs/OOPDataBaseDiagram.PNG)
  
 
 ## Getting Started
