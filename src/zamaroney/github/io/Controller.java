@@ -38,6 +38,7 @@ public class Controller {
 
   // Initialize the product Observable Array
   ObservableList<Product> products = FXCollections.observableArrayList();
+
   String PASS;
 
   static final String JDBC_DRIVER = "org.h2.Driver";
@@ -204,8 +205,6 @@ public class Controller {
 
     PreparedStatement storeProduct;
 
-    products.add(myProduct);
-
     try {
       storeProduct = conn.prepareStatement(
           "INSERT INTO Product(name, manufacturer, type) VALUES(?, ?, ?)");
@@ -219,7 +218,7 @@ public class Controller {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    products.clear();
     loadProductionList();
   }
 
@@ -289,6 +288,7 @@ public class Controller {
    * Loads all the current products into the product listView.
    */
   private void loadProductionList() {
+
     String sql = "SELECT * FROM PRODUCT";
     try {
       ResultSet rs = stmt.executeQuery(sql);
