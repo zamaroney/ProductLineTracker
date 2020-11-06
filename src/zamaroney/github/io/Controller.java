@@ -298,23 +298,7 @@ public class Controller {
         String typeString = rs.getString(3);
         String manufacturer = rs.getString(4);
 
-        ItemType type;
-        switch (typeString) {
-          case "AU":
-            type = AUDIO;
-            break;
-          case "VI":
-            type = ItemType.VISUAL;
-            break;
-          case "AM":
-            type = ItemType.AUDIO_MOBILE;
-            break;
-          case "VM":
-            type = ItemType.VISUAL_MOBILE;
-            break;
-          default:
-            throw new IllegalStateException("Unexpected value: " + typeString);
-        }
+        ItemType type = typeStringToItemType(typeString);
 
         // create object
         Widget productFromDB = new Widget(name, manufacturer, type);
@@ -380,6 +364,27 @@ public class Controller {
     }
     showProduction(records);
     return records;
+  }
+
+  /**
+   * User input converted to ItemType Object.
+   *
+   * @param typeString String user input.
+   * @return The ItemType object of the user input.
+   */
+  private ItemType typeStringToItemType(String typeString) {
+    switch (typeString) {
+      case "AU":
+        return AUDIO;
+      case "VI":
+        return ItemType.VISUAL;
+      case "AM":
+        return ItemType.AUDIO_MOBILE;
+      case "VM":
+        return ItemType.VISUAL_MOBILE;
+      default:
+        throw new IllegalStateException("Unexpected value: " + typeString);
+    }
   }
 
   /**
