@@ -183,23 +183,8 @@ public class Controller {
   void printProduct(ActionEvent event) {
 
     String value = chooseType.getValue();
-    ItemType type;
-    switch (value) {
-      case "Audio":
-        type = AUDIO;
-        break;
-      case "Visual":
-        type = ItemType.VISUAL;
-        break;
-      case "Audio Mobile":
-        type = ItemType.AUDIO_MOBILE;
-        break;
-      case "Visual Mobile":
-        type = ItemType.VISUAL_MOBILE;
-        break;
-      default:
-        throw new IllegalStateException("Unexpected value: " + value);
-    }
+    ItemType type = stringToItemType(value);
+
 
     Widget myProduct = new Widget(productTextBox.getText(), manufacturerTextBox.getText(), type);
 
@@ -220,6 +205,27 @@ public class Controller {
     }
     products.clear();
     loadProductionList();
+  }
+
+  /**
+   * User input converted to ItemType Object.
+   *
+   * @param value String user input.
+   * @return The ItemType object of the user input.
+   */
+  private ItemType stringToItemType(String value) {
+    switch (value) {
+      case "Audio":
+        return AUDIO;
+      case "Visual":
+        return ItemType.VISUAL;
+      case "Audio Mobile":
+        return ItemType.AUDIO_MOBILE;
+      case "Visual Mobile":
+        return ItemType.VISUAL_MOBILE;
+      default:
+        throw new IllegalStateException("Unexpected value: " + value);
+    }
   }
 
   /**
