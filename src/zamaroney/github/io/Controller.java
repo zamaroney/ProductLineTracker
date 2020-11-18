@@ -304,7 +304,7 @@ public class Controller {
         String typeString = rs.getString(3);
         String manufacturer = rs.getString(4);
 
-        ItemType type = typeStringToItemType(typeString);
+        ItemType type = abbreviationToItemType(typeString);
 
         // create object
         Widget productFromDB = new Widget(name, manufacturer, type);
@@ -378,7 +378,7 @@ public class Controller {
    * @param typeString String user input.
    * @return The ItemType object of the user input.
    */
-  private ItemType typeStringToItemType(String typeString) {
+  private ItemType abbreviationToItemType(String typeString) {
     switch (typeString) {
       case "AU":
         return AUDIO;
